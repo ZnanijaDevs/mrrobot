@@ -24,16 +24,14 @@ oauth_config:
     user:
       - search:read
       - chat:write
-      - reactions:write
+      - groups:history
     bot:
       - channels:history
       - chat:write
       - groups:read
       - im:write
       - reactions:read
-      - reactions:write
       - users:read
-      - groups:history
 settings:
   event_subscriptions:
     bot_events:
