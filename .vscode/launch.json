@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "name": "Run the bot",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/run.py",
+            "console": "integratedTerminal",
+            "env": {
+                "ENV": "development"
+            }
+        }
+    ]
+}
