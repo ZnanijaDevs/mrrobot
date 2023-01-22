@@ -73,9 +73,12 @@ SENTRY_DSN: "..."
 # Logs
 LOG_SHEETS_ID: "<id>"
 ```
-Then create `secrets.py` in `mrrobot/config` directory and set the Google Service Account credentials.
+Then create `secrets.py` in `mrrobot/config` directory and set:
+- the Google Service Account credentials
+- list of admins in the Slack workspace
 ```py
 GOOGLE_SERVICE_ACCOUNT = {}
+admins = ["U35GJA25B",]
 ```
 
 ### Run the bot locally
