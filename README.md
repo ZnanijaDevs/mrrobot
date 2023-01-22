@@ -22,14 +22,13 @@ features:
 oauth_config:
   scopes:
     user:
-      - search:read
       - chat:write
       - groups:history
+      - reactions:write
     bot:
       - channels:history
       - chat:write
       - groups:read
-      - im:write
       - reactions:read
       - users:read
 settings:
