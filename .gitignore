@@ -4,3 +4,4 @@ poetry.lock
 .env*
 _private
 fly.toml
+.idea
