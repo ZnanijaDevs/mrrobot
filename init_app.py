@@ -19,5 +19,5 @@ SENTRY_IGNORED_EXCEPTIONS = [
 
 sentry_sdk.init(
     traces_sample_rate=0,
-    before_send=lambda event, hint: event if hint["exc_info"][1].args[0] in SENTRY_IGNORED_EXCEPTIONS else None
+    before_send=lambda event, hint: event if hint["exc_info"][1].args[0] not in SENTRY_IGNORED_EXCEPTIONS else None
 )
