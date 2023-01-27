@@ -1,4 +1,3 @@
-import time
 from http import HTTPStatus
 from httpx import AsyncClient, HTTPError, ConnectError
 from mrrobot.util import env
@@ -21,7 +20,7 @@ class BrainlyRequestFailedException(Exception):
         super().__init__(reason)
 
 
-async def get_brainly_task(id: int) -> dict:
+async def get_brainly_task(task_id: int) -> dict:
     """Get a Brainly task by ID"""
     async with AsyncClient(
         base_url=ZNANIJA_API_GATEWAY_HOST,
@@ -40,7 +39,7 @@ async def get_brainly_task(id: int) -> dict:
 
             data = response.json()
             if data is None:
-                raise BrainlyTaskDoesNotExistException(id)
+                raise BrainlyTaskDoesNotExistException(task_id)
         except (HTTPError, ConnectError) as exc:
             raise BrainlyRequestFailedException(f"Request to the Brainly service failed: {str(exc)}") from None
 

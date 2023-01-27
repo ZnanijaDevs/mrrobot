@@ -1,4 +1,6 @@
 [flake8]
 per-file-ignores =
-    run.py:E402
-max-line-length = 120
+    run.py:E402,
+    mrrobot/config/secrets.py,mrrobot/config/common.py,test/test_find_in_text_utils.py:E501,
+    mrrobot/handlers/__init__.py,run.py:F401
+max-line-length = 125

@@ -14,4 +14,3 @@ async def handle_reaction_added_in_todelete_event(event: dict, ack):
         channel_id=SlackChannel.TODELETE.value,
         ts=event["item"]["ts"]
     )
-

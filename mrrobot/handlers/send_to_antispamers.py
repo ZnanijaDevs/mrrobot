@@ -9,11 +9,11 @@ from mrrobot.util import get_brainly_task, delete_message, ts_to_date
 
 
 @bot.message(
-    keyword=re.compile(r"снять\s{1,}(отметку|нарушение)", re.IGNORECASE),
+    keyword=re.compile(r"снять\s+(отметку|нарушение)", re.IGNORECASE),
     matchers=[has_brainly_task_link],
     middleware=[fetch_user_data]
 )
-async def send_reported_content_to_antispamers(message: dict, context: dict, ack, say):
+async def send_reported_content_to_antispamers(message: dict, context: dict, ack):
     await ack()
 
     task = await get_brainly_task(context["brainly_task_id"])

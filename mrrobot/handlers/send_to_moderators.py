@@ -13,7 +13,7 @@ from mrrobot.util import get_brainly_task, delete_message, ts_to_date
     matchers=[has_brainly_task_link],
     middleware=[fetch_user_data]
 )
-async def send_wrong_content_to_moderators(message: dict, context: dict, ack, say):
+async def send_wrong_content_to_moderators(message: dict, context: dict, ack):
     await ack()
 
     task = await get_brainly_task(context["brainly_task_id"])

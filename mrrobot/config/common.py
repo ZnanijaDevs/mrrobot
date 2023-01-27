@@ -1,12 +1,12 @@
+from os import environ
 from enum import Enum
-from mrrobot.util import env
 
 
 class SlackChannel(Enum):
-    HELP = env("HELP_CHANNEL_ID")
-    TODELETE = env("TODELETE_CHANNEL_ID")
-    ANTISPAMERS = env("ANTISPAMERS_CHANNEL_ID")
-    MODERATORS = env("MODERATORS_CHANNEL_ID")
+    HELP = environ["HELP_CHANNEL_ID"]
+    TODELETE = environ["TODELETE_CHANNEL_ID"]
+    ANTISPAMERS = environ["ANTISPAMERS_CHANNEL_ID"]
+    MODERATORS = environ["MODERATORS_CHANNEL_ID"]
 
 
 TIMEZONE = "Europe/Minsk"

@@ -25,9 +25,9 @@ async def delete_message(channel_id: str, ts: str, clear_threads: bool | None = 
 
 
 @AsyncTTL(time_to_live=300)
-async def get_user(id: str) -> dict:
+async def get_user(user_id: str) -> dict:
     """Retrieve information about a Slack user"""
-    data = await bot.client.users_info(user=id)
+    data = await bot.client.users_info(user=user_id)
     user = data["user"]
 
     return user | {
