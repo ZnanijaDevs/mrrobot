@@ -12,7 +12,7 @@ from mrrobot.util import delete_message, ts_to_date
     matchers=[is_event_in_help_channel, reaction_is_dangerous],
     middleware=[fetch_user_data, fetch_message_data]
 )
-async def handle_reaction_added_in_help_event(event: dict, context: dict, logger: Logger, ack, say):
+async def handle_reaction_added_in_help_event(event: dict, context: dict, logger: Logger, ack):
     await ack()
 
     message: dict = context["message"]
