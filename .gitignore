@@ -5,3 +5,4 @@ poetry.lock
 _private
 fly.toml
 .idea
+.pytest_cache
