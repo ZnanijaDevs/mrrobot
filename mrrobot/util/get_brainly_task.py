@@ -32,7 +32,7 @@ async def get_brainly_task(task_id: int) -> dict:
         timeout=REQUEST_TIMEOUT
     ) as client:
         try:
-            response = await client.get(f"/tasks/{id}")
+            response = await client.get(f"/tasks/{task_id}")
 
             if response.status_code != HTTPStatus.OK:
                 raise HTTPError("Response status must be 200 OK")
