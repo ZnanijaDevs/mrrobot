@@ -11,7 +11,7 @@ async def error_handler(error: Exception, logger: Logger):
     if isinstance(error, BoltUnhandledRequestError):
         return BoltResponse(status=200, body="Unhandled request.")
 
+    logger.exception(error)
+
     if is_production():
         sentry_sdk.capture_exception(error)
-    else:
-        logger.exception(error)
