@@ -42,6 +42,10 @@ async def is_event_in_moderators_channel(event: dict) -> bool:
     return check_event_is_in_channel(event, SlackChannel.MODERATORS)
 
 
+async def is_event_in_antispamers_channel(event: dict) -> bool:
+    return check_event_is_in_channel(event, SlackChannel.ANTISPAMERS)
+
+
 async def has_brainly_task_link(message: dict, context: dict) -> bool:
     """Check whether the text of the posted message contains a link to a Brainly task"""
     if (task_id := find_task_id(message["text"])) is None:
