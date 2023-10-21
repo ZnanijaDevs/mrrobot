@@ -1,7 +1,7 @@
 import re
 from slackblocks import Message, SectionBlock, ContextBlock, Text
 from mrrobot import bot
-from mrrobot.config import SlackChannel, GSHEET_INSERT_ROW_INDEX
+from mrrobot.config import SlackChannel, GSHEET_INSERT_ROW_INDEX, CORRECTION_EMOJI
 from mrrobot.db import gsheet
 from mrrobot.matchers import has_brainly_task_link
 from mrrobot.middleware import fetch_user_data
@@ -9,7 +9,7 @@ from mrrobot.util import get_brainly_task, delete_message, ts_to_date
 
 
 @bot.message(
-    keyword=re.compile(r":arrows_counterclockwise:"),
+    keyword=re.compile(rf":{CORRECTION_EMOJI}:"),
     matchers=[has_brainly_task_link],
     middleware=[fetch_user_data]
 )
