@@ -28,6 +28,8 @@ async def fetch_message_data(context: dict, payload: dict, logger: Logger, next)
             """)
             return
 
+        found_message["channel"] = channel_id
+
         context["message"] = found_message
         context["message_user"] = await get_user(found_message["user"])
     elif payload.get("type") == "message" and "subtype" not in payload:
