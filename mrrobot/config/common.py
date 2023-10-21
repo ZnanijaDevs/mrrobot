@@ -13,6 +13,7 @@ TIMEZONE = "Europe/Minsk"
 
 DANGER_REACTIONS_REGEX = r"check|magic_wand|completed|peacock|reasonable|mary_cheek|^(bug|canc_noj)$"
 SILENT_DELETION_REACTION = "test_tube"
+CORRECTION_EMOJI = "arrows_counterclockwise"
 
 TASK_ID_REGEX = r"(?<=\/task\/)\d+(?=\||>|\?)"
 PROFILE_LINK_REGEX = r"(?<=<)[A-Za-z:\/]+(znanija\.com)\/((app\/profile\/)|(profil\/\w+-)|(users\/(user_content|redirect_user)\/))(\d+)"
