@@ -1,6 +1,6 @@
 import re
 import logging
-from mrrobot.config import admins, DANGER_REACTIONS_REGEX, SlackChannel
+from mrrobot.config import admins, DANGER_REACTIONS_REGEX, CORRECTION_EMOJI, SlackChannel
 from mrrobot.util import find_task_id
 
 
@@ -12,6 +12,11 @@ async def user_is_admin(event: dict) -> bool:
 async def reaction_is_dangerous(event: dict) -> bool:
     """Check whether the reaction is on the list of dangerous reactions"""
     return re.search(DANGER_REACTIONS_REGEX, event["reaction"]) is not None
+
+
+async def has_correction_reaction(event: dict) -> bool:
+    """Check if the event contains a correction reaction."""
+    return event["reaction"] == CORRECTION_EMOJI
 
 
 def check_event_is_in_channel(event: dict, channel_id: SlackChannel) -> bool:

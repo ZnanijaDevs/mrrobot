@@ -7,3 +7,4 @@ import mrrobot.handlers.silent_deletion_reaction_added
 import mrrobot.handlers.message_posted_in_todelete
 import mrrobot.handlers.reaction_added_in_todelete
 import mrrobot.handlers.message_deleted_in_todelete
+import mrrobot.handlers.handle_correction_reaction
