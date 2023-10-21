@@ -35,7 +35,7 @@ async def get_brainly_task(task_id: int) -> dict:
             response = await client.get(f"/tasks/{task_id}")
 
             if response.status_code != HTTPStatus.OK:
-                raise HTTPError("Response status must be 200 OK")
+                raise HTTPError(f"Response status must be 200 OK, not {response.status_code}")
 
             data = response.json()
             if data is None:
