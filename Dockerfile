@@ -1,12 +1,16 @@
 FROM python:3.10.0-slim-buster
-RUN pip install poetry
 
-WORKDIR /bot
-COPY *.py poetry.lock pyproject.toml .env* /bot
-COPY ./mrrobot/ /bot/mrrobot/
+WORKDIR /code
+
+COPY ./requirements.txt /code/requirements.txt
+
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+
+COPY *.py poetry.lock pyproject.toml .env* requirements.txt /code/
+COPY ./mrrobot/ /code/mrrobot/
 
 RUN poetry config virtualenvs.create false
 RUN poetry install --no-interaction --without dev --no-root
 
-ENV "ENV" "production"
+ENV ENV=production
 CMD ["python", "run.py"]
