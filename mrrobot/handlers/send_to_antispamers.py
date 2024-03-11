@@ -1,11 +1,13 @@
 import re
+from logging import Logger
 from slackblocks import Message, SectionBlock, ContextBlock, Text
 from mrrobot import bot
 from mrrobot.config import SlackChannel, GSHEET_INSERT_ROW_INDEX
 from mrrobot.db import gsheet
 from mrrobot.matchers import has_brainly_task_link
 from mrrobot.middleware import fetch_user_data
-from mrrobot.util import get_brainly_task, delete_message, ts_to_date
+from mrrobot.util import delete_message, ts_to_date, get_url_with_brainly_host
+from mrrobot.brainly_api import brainly_api
 
 
 @bot.message(
@@ -13,24 +15,31 @@ from mrrobot.util import get_brainly_task, delete_message, ts_to_date
     matchers=[has_brainly_task_link],
     middleware=[fetch_user_data]
 )
-async def send_reported_content_to_antispamers(message: dict, context: dict, ack):
+async def send_reported_content_to_antispamers(message: dict, context: dict, logger: Logger, ack):
     await ack()
 
-    task = await get_brainly_task(context["brainly_task_id"])
+    task_id = context["brainly_task_id"]
+    task = await brainly_api.get_question(task_id)
+
+    if task is None:
+        logger.warn(f"Task {task_id} has been deleted")
+        return
+
+    task_link = get_url_with_brainly_host(f"/task/{task_id}")
 
     await delete_message(channel_id=message["channel"], ts=message["ts"])
     await bot.client.chat_postMessage(**Message(
         channel=SlackChannel.ANTISPAMERS.value,
-        text=f"#antispamers - {task['link']}",
+        text=f"#antispamers - {task_link}",
         blocks=[
-            SectionBlock(f":triangular_flag_on_post: {task.get('subject', '')} {task['link']}"),
-            SectionBlock(task["short_content"] or "No content"),
+            SectionBlock(f":triangular_flag_on_post: {task.subject} {task_link}"),
+            SectionBlock(task.short_content or "-"),
             ContextBlock(Text(f"{message['text']}\n<@{message['user']}>")),
         ]
     ))
 
     gsheet.worksheet("#antispamers logs").insert_row([
-        task["link"],
+        task_link,
         context["user_data"]["nick"],
         ts_to_date(message["ts"]),
         message["text"]
