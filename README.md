@@ -1,8 +1,7 @@
 ## mrrobot
 
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-
 This project is a bot specifically for use with the Znanija.com workspace in Slack.
+
 The bot has several important features for the workspace, such as deleting messages by emoji, logging deleted messages, and forwarding messages to different channels.
 
 ### Setup
@@ -13,7 +12,6 @@ Here is an example configuration file (App Manifest)
 ```yml
 display_information:
   name: MrRobot
-  description: Je pense, donc je suis...
   background_color: "#0057b7"
 features:
   bot_user:
@@ -47,35 +45,37 @@ settings:
 Set the `ENV` environment variable.
 Then you will have to create `.env` / `.env.production`.
 
-```yml
-ENV: production # or development
+```bash
+ENV=production # or development
 
 # Slack config
-SLACK_APP_TOKEN: "xapp-..."
-SLACK_BOT_TOKEN: "xoxb-..."
-SLACK_ADMIN_TOKEN: "xoxp-..."
-SLACK_SIGNING_SECRET: "..."
-HELP_CHANNEL_ID: "C353BRQAZ"
-TODELETE_CHANNEL_ID: "C2P3PR98V"
-ANTISPAMERS_CHANNEL_ID: "C02DE6LKQLR"
-MODERATORS_CHANNEL_ID: "C03KLBS5S94"
+SLACK_APP_TOKEN="xapp-..."
+SLACK_BOT_TOKEN="xoxb-..."
+SLACK_ADMIN_TOKEN="xoxp-..."
+SLACK_SIGNING_SECRET="..."
+HELP_CHANNEL_ID="C353BRQAZ"
+TODELETE_CHANNEL_ID="C2P3PR98V"
+ANTISPAMERS_CHANNEL_ID="C02DE6LKQLR"
+MODERATORS_CHANNEL_ID="C03KLBS5S94"
 
-REDIS_DB_URL: "redis://user:pass@host.com:12957/0"
-ZNANIJA_API_GATEWAY_AUTH_TOKEN: "..."
-ZNANIJA_API_GATEWAY_HOST: "https://gtwy.example.com"
+ZNANIJA_API_HOST="https://znanija.com"
+ZNANIJA_API_TOKEN="XXXXXXXX" # X-B-Token-Long auth token
+ZNANIJA_HOST="https://znanija.com"
+
+REDIS_DB_URL="redis://user:pass@host.com:12957/0"
 
 # Use Sentry in production mode only
-SENTRY_DSN: "..."
+SENTRY_DSN="..."
 
-# Logs
-LOG_SHEETS_ID: "<id>"
+# Logs (Google Sheets)
+LOG_SHEETS_ID="<id>"
 ```
 Then create `secrets.py` in `mrrobot/config` directory and set:
 - the Google Service Account credentials
 - list of admins in the Slack workspace
 ```py
 GOOGLE_SERVICE_ACCOUNT = {}
-admins = ["U35GJA25B",]
+admins = ["U35GJA25B"]
 ```
 
 ### Run the bot locally
